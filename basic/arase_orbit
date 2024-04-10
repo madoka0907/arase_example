@@ -1,0 +1,58 @@
+import matplotlib.pyplot as plt
+import pyspedas
+import pytplot
+import numpy as np
+
+tr = ['2017-04-24 00:00:00', '2017-04-25 00:00:00']
+pyspedas.erg.orb( trange=tr )
+
+pytplot.split_vec('erg_orb_l2_pos_rmlatmlt')
+L = pytplot.data_quants['erg_orb_l2_pos_rmlatmlt_x']
+MLat = pytplot.data_quants['erg_orb_l2_pos_rmlatmlt_y'] / 180 * np.pi
+MLT = pytplot.data_quants['erg_orb_l2_pos_rmlatmlt_z'] * 15 / 180 * np.pi
+
+x = L * np.cos(MLT) * np.cos(MLat)
+y = L * np.sin(MLT) * np.cos(MLat)
+
+import xarray as xr
+import pandas as pd
+
+x['time'] = pd.to_datetime(x['time'].values)
+
+start_time1 = pd.Timestamp('2017-04-24 15:10:00')
+end_time1 = pd.Timestamp('2017-04-24 15:20:00')
+start_time2 = pd.Timestamp('2017-04-24 16:45:00')
+end_time2 = pd.Timestamp('2017-04-24 16:55:00')
+
+x1_event = x.sel(time=slice(start_time1, end_time1))
+y1_event = y.sel(time=slice(start_time1, end_time1))
+L1_event = L.sel(time=slice(start_time1, end_time1))
+MLat1_event = MLat.sel(time=slice(start_time1, end_time1))
+MLT1_event = MLT.sel(time=slice(start_time1, end_time1))
+
+x2_event = x.sel(time=slice(start_time2, end_time2))
+y2_event = y.sel(time=slice(start_time2, end_time2))
+L2_event = L.sel(time=slice(start_time2, end_time2))
+MLat2_event = MLat.sel(time=slice(start_time2, end_time2))
+MLT2_event = MLT.sel(time=slice(start_time2, end_time2))
+
+fig = plt.figure(figsize=(5,5))
+
+ax = fig.add_subplot(111, projection='polar')
+ax.plot(MLT, L*np.cos(MLat), linewidth=1, color='black', linestyle='--', alpha=0.5, label='ERG orbit (2017/04/24)')
+ax.plot(MLT1_event, L1_event*np.cos(MLat1_event), linewidth=2, color='red', label='15:10:00-15:20:00', linestyle='-')
+ax.plot(MLT2_event, L2_event*np.cos(MLat2_event), linewidth=2, color='blue', label='16:45:00-16:55:00', linestyle='-')
+
+ax.set_theta_zero_location('N')
+custom_labels = [str(i*2) for i in range(12)]
+step = 30
+custom_angles = list(range(0, 331, step))
+ax.set_xticks(np.deg2rad(custom_angles))
+ax.set_xticklabels(custom_labels)
+
+ax.set_yticks(list(range(1, 7)))
+ax.set_yticklabels(['1[Re]', '2', '3', '4', '5', '6'], )
+
+plt.legend(loc='lower right', fontsize=10)
+
+plt.show()

@@ -1,0 +1,175 @@
+import matplotlib.pyplot as plt
+import pyspedas
+import pytplot
+import numpy as np
+
+tr = ['2017-04-24 00:00:00', '2017-04-25 00:00:00']
+pyspedas.erg.orb( trange=tr )
+
+pytplot.split_vec('erg_orb_l2_pos_rmlatmlt')
+L = pytplot.data_quants['erg_orb_l2_pos_rmlatmlt_x']
+MLat = pytplot.data_quants['erg_orb_l2_pos_rmlatmlt_y'] / 180 * np.pi
+MLT = pytplot.data_quants['erg_orb_l2_pos_rmlatmlt_z'] * 15 / 180 * np.pi
+
+x = L * np.cos(MLT) * np.cos(MLat)
+y = L * np.sin(MLT) * np.cos(MLat)
+
+import xarray as xr
+import pandas as pd
+
+x['time'] = pd.to_datetime(x['time'].values)
+
+start_time1 = pd.Timestamp('2017-04-24 13:48:58')
+end_time1 = pd.Timestamp('2017-04-24 13:49:04')
+start_time2 = pd.Timestamp('2017-04-24 13:49:29')
+end_time2 = pd.Timestamp('2017-04-24 13:49:31')
+start_time3 = pd.Timestamp('2017-04-24 15:23:49')
+end_time3 = pd.Timestamp('2017-04-24 15:25:21')
+start_time4 = pd.Timestamp('2017-04-24 15:26:31')
+end_time4 = pd.Timestamp('2017-04-24 15:27:53')
+start_time5 = pd.Timestamp('2017-04-24 15:27:55')
+end_time5 = pd.Timestamp('2017-04-24 15:28:04')
+start_time6 = pd.Timestamp('2017-04-24 16:57:26')
+end_time6 = pd.Timestamp('2017-04-24 16:59:59')
+start_time7 = pd.Timestamp('2017-04-24 17:02:07')
+end_time7 = pd.Timestamp('2017-04-24 17:03:13')
+start_time8 = pd.Timestamp('2017-04-24 17:43:01')
+end_time8 = pd.Timestamp('2017-04-24 17:44:42')
+start_time9 = pd.Timestamp('2017-04-24 18:31:08')
+end_time9 = pd.Timestamp('2017-04-24 18:31:37')
+start_time10 = pd.Timestamp('2017-04-24 18:31:43')
+end_time10 = pd.Timestamp('2017-04-24 18:34:43')
+start_time11 = pd.Timestamp('2017-04-24 18:34:45')
+end_time11 = pd.Timestamp('2017-04-24 18:34:52')
+start_time12 = pd.Timestamp('2017-04-24 18:34:57')
+end_time12 = pd.Timestamp('2017-04-24 18:35:30')
+start_time13 = pd.Timestamp('2017-04-24 19:17:31')
+end_time13 = pd.Timestamp('2017-04-24 19:22:57')
+start_time14 = pd.Timestamp('2017-04-24 21:22:57')
+end_time14 = pd.Timestamp('2017-04-24 21:27:39')
+start_time15 = pd.Timestamp('2017-04-24 22:52:08')
+end_time15 = pd.Timestamp('2017-04-24 23:02:34')
+
+x1_event = x.sel(time=slice(start_time1, end_time1))
+y1_event = y.sel(time=slice(start_time1, end_time1))
+L1_event = L.sel(time=slice(start_time1, end_time1))
+MLat1_event = MLat.sel(time=slice(start_time1, end_time1))
+MLT1_event = MLT.sel(time=slice(start_time1, end_time1))
+
+x2_event = x.sel(time=slice(start_time2, end_time2))
+y2_event = y.sel(time=slice(start_time2, end_time2))
+L2_event = L.sel(time=slice(start_time2, end_time2))
+MLat2_event = MLat.sel(time=slice(start_time2, end_time2))
+MLT2_event = MLT.sel(time=slice(start_time2, end_time2))
+
+x3_event = x.sel(time=slice(start_time3, end_time3))
+y3_event = y.sel(time=slice(start_time3, end_time3))
+L3_event = L.sel(time=slice(start_time3, end_time3))
+MLat3_event = MLat.sel(time=slice(start_time3, end_time3))
+MLT3_event = MLT.sel(time=slice(start_time3, end_time3))
+
+x4_event = x.sel(time=slice(start_time4, end_time4))
+y4_event = y.sel(time=slice(start_time4, end_time4))
+L4_event = L.sel(time=slice(start_time4, end_time4))
+MLat4_event = MLat.sel(time=slice(start_time4, end_time4))
+MLT4_event = MLT.sel(time=slice(start_time4, end_time4))
+
+x5_event = x.sel(time=slice(start_time5, end_time5))
+y5_event = y.sel(time=slice(start_time5, end_time5))
+L5_event = L.sel(time=slice(start_time5, end_time5))
+MLat5_event = MLat.sel(time=slice(start_time5, end_time5))
+MLT5_event = MLT.sel(time=slice(start_time5, end_time5))
+
+x6_event = x.sel(time=slice(start_time6, end_time6))
+y6_event = y.sel(time=slice(start_time6, end_time6))
+L6_event = L.sel(time=slice(start_time6, end_time6))
+MLat6_event = MLat.sel(time=slice(start_time6, end_time6))
+MLT6_event = MLT.sel(time=slice(start_time6, end_time6))
+
+x7_event = x.sel(time=slice(start_time7, end_time7))
+y7_event = y.sel(time=slice(start_time7, end_time7))
+L7_event = L.sel(time=slice(start_time7, end_time7))
+MLat7_event = MLat.sel(time=slice(start_time7, end_time7))
+MLT7_event = MLT.sel(time=slice(start_time7, end_time7))
+
+x8_event = x.sel(time=slice(start_time8, end_time8))
+y8_event = y.sel(time=slice(start_time8, end_time8))
+L8_event = L.sel(time=slice(start_time8, end_time8))
+MLat8_event = MLat.sel(time=slice(start_time8, end_time8))
+MLT8_event = MLT.sel(time=slice(start_time8, end_time8))
+
+x9_event = x.sel(time=slice(start_time9, end_time9))
+y9_event = y.sel(time=slice(start_time9, end_time9))
+L9_event = L.sel(time=slice(start_time9, end_time9))
+MLat9_event = MLat.sel(time=slice(start_time9, end_time9))
+MLT9_event = MLT.sel(time=slice(start_time9, end_time9))
+
+x10_event = x.sel(time=slice(start_time10, end_time10))
+y10_event = y.sel(time=slice(start_time10, end_time10))
+L10_event = L.sel(time=slice(start_time10, end_time10))
+MLat10_event = MLat.sel(time=slice(start_time10, end_time10))
+MLT10_event = MLT.sel(time=slice(start_time10, end_time10))
+
+x11_event = x.sel(time=slice(start_time11, end_time11))
+y11_event = y.sel(time=slice(start_time11, end_time11))
+L11_event = L.sel(time=slice(start_time11, end_time11))
+MLat11_event = MLat.sel(time=slice(start_time11, end_time11))
+MLT11_event = MLT.sel(time=slice(start_time11, end_time11))
+
+x12_event = x.sel(time=slice(start_time12, end_time12))
+y12_event = y.sel(time=slice(start_time12, end_time12))
+L12_event = L.sel(time=slice(start_time12, end_time12))
+MLat12_event = MLat.sel(time=slice(start_time12, end_time12))
+MLT12_event = MLT.sel(time=slice(start_time12, end_time12))
+
+x13_event = x.sel(time=slice(start_time13, end_time13))
+y13_event = y.sel(time=slice(start_time13, end_time13))
+L13_event = L.sel(time=slice(start_time13, end_time13))
+MLat13_event = MLat.sel(time=slice(start_time13, end_time13))
+MLT13_event = MLT.sel(time=slice(start_time13, end_time13))
+
+x14_event = x.sel(time=slice(start_time14, end_time14))
+y14_event = y.sel(time=slice(start_time14, end_time14))
+L14_event = L.sel(time=slice(start_time14, end_time14))
+MLat14_event = MLat.sel(time=slice(start_time14, end_time14))
+MLT14_event = MLT.sel(time=slice(start_time14, end_time14))
+
+x15_event = x.sel(time=slice(start_time15, end_time15))
+y15_event = y.sel(time=slice(start_time15, end_time15))
+L15_event = L.sel(time=slice(start_time15, end_time15))
+MLat15_event = MLat.sel(time=slice(start_time15, end_time15))
+MLT15_event = MLT.sel(time=slice(start_time15, end_time15))
+
+fig = plt.figure(figsize=(10,10))
+
+ax = fig.add_subplot(111, projection='polar')
+ax.plot(MLT, L*np.cos(MLat), linewidth=2, color='black', linestyle='--', alpha=0.5, label='ERG orbit (2017/04/24)')
+ax.plot(MLT1_event, L1_event*np.cos(MLat1_event), linewidth=4, color='red', label='13:48:58-13:49:04', linestyle='-')
+ax.plot(MLT2_event, L2_event*np.cos(MLat2_event), linewidth=4, color='blue', label='13:49:29-13:49:31', linestyle='-')
+ax.plot(MLT3_event, L3_event*np.cos(MLat3_event), linewidth=4, color='darkorange', label='15:23:49-15:25:21', linestyle='-')
+ax.plot(MLT4_event, L4_event*np.cos(MLat4_event), linewidth=4, color='darkviolet', label='15:26:31-15:27:53', linestyle='-')
+ax.plot(MLT5_event, L5_event*np.cos(MLat5_event), linewidth=4, color='darkgoldenrod', label='15:27:55-15:28:04', linestyle='-')
+ax.plot(MLT6_event, L6_event*np.cos(MLat6_event), linewidth=4, color='purple', label='16:57:26-16:59:59', linestyle='-')
+ax.plot(MLT7_event, L7_event*np.cos(MLat7_event), linewidth=4, color='gold', label='17:02:07-17:03:13', linestyle='-')
+ax.plot(MLT8_event, L8_event*np.cos(MLat8_event), linewidth=4, color='magenta', label='17:43:01-17:44:42', linestyle='-')
+ax.plot(MLT9_event, L9_event*np.cos(MLat9_event), linewidth=4, color='olivedrab', label='18:31:08-18:31:37', linestyle='-')
+ax.plot(MLT10_event, L10_event*np.cos(MLat10_event), linewidth=4, color='turquoise', label='18:31:43-18:34:43', linestyle='-')
+ax.plot(MLT11_event, L11_event*np.cos(MLat11_event), linewidth=4, color='lime', label='18:34:45-18:34:52', linestyle='-')
+ax.plot(MLT12_event, L12_event*np.cos(MLat12_event), linewidth=4, color='aqua', label='18:34:57-18:35:30', linestyle='-')
+ax.plot(MLT13_event, L13_event*np.cos(MLat13_event), linewidth=4, color='darkgreen', label='19:17:31-19:22:57', linestyle='-')
+ax.plot(MLT14_event, L14_event*np.cos(MLat14_event), linewidth=4, color='dodgerblue', label='21:22:57-21:27:39', linestyle='-')
+ax.plot(MLT15_event, L15_event*np.cos(MLat15_event), linewidth=4, color='firebrick', label='22:52:08-23:02:34', linestyle='-')
+
+ax.set_theta_zero_location('N')
+custom_labels = [str(i*2) for i in range(12)]
+step = 30
+custom_angles = list(range(0, 331, step))
+ax.set_xticks(np.deg2rad(custom_angles))
+ax.set_xticklabels(custom_labels)
+
+ax.set_yticks(list(range(1, 7)))
+ax.set_yticklabels(['1[Re]', '2', '3', '4', '5', '6'], )
+
+plt.legend(loc='lower right', fontsize=10)
+
+plt.show()
